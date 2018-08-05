@@ -11,7 +11,8 @@ LN				= ln -f -s
 
 CFLAGS			= -std=c++11 -Wall -I. -DTTS_DEBUG -DRAW_FEATURE -DUNIX -DLINUX -D_REENTRAN
 
-LIBS			= -L/usr/lib64 -L/usr/lib64/openssl -lcurl -lcrypto
+#LIBS			= -L/usr/lib64 -L/usr/lib64/openssl -lcurl -lcrypto
+LIBS			= -lcurl -lcrypto
 INCS			= -I/usr/include
 
 TRADING_OBJS	= xcoin_api_client.o
