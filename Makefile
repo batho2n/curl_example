@@ -12,7 +12,7 @@ LN				= ln -f -s
 CFLAGS			= -std=c++11 -Wall -I. -DTTS_DEBUG -DRAW_FEATURE -DUNIX -DLINUX -D_REENTRAN
 
 #LIBS			= -L/usr/lib64 -L/usr/lib64/openssl -lcurl -lcrypto
-LIBS			= -lcurl -lcrypto
+LIBS			= -lcurl
 INCS			= -I/usr/include
 
 TRADING_OBJS	= xcoin_api_client.o
@@ -35,8 +35,8 @@ build: $(OBJS)
 .cpp.o:
 	$(GXX) $(INCS) $(CFLAGS) -o $@ -c $<
 
-exec:
-	./$(TRADING) -t sell -c ETH -u 0.0000001
+test:
+	./$(EXE) test TTS music_artist_2NE1
 
 clean:
 	$(RM) $(EXE) *.o
