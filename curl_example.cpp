@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);	//여기 지정된 포인터를 WRITEFUNCTION에 넘겨준다.
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);	//writer함수 지정
 		res = curl_easy_perform(curl);							//curl 수행
-		
+	
 		if (res != CURLE_OK)
 		{
 			cout << "curl_easy_perform() failed: " <<  curl_easy_strerror(res) << endl;
