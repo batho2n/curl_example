@@ -21,13 +21,21 @@ TRADING_EXE		= coin_trading.exe
 CURL_OBJS		= curl_example.o
 CURL_EXE		= curl_example.exe
 
-OBJS			= $(CURL_OBJS)
-EXE				= $(CURL_EXE)
+WAV_OBJS		= wav_example.o
+WAV_EXE			= wav_example.exe
+
+OBJS			= $(CURL_OBJS)	$(WAV_OBJS)	$(TEST_OBJS)
+EXE				= $(CURL_EXE)	$(WAV_EXE)	$(TEST_EXE)
+
+TEST_OBJS		= sepheaders.o
+TEST_EXE		= sepheaders.exe
 
 all: build
 
 build: $(OBJS) 
-	$(GXX) -o $(EXE) $(OBJS) $(LIBS)
+	$(GXX) -o $(CURL_EXE) $(CURL_OBJS) $(LIBS)
+	$(GXX) -o $(WAV_EXE) $(WAV_OBJS) $(LIBS)
+	$(GXX) -o $(TEST_EXE) $(TEST_OBJS) $(LIBS)
 
 .c.o:
 	$(GCC) $(INCS) $(CFLAGS) -o $@ -c $<
@@ -35,11 +43,17 @@ build: $(OBJS)
 .cpp.o:
 	$(GXX) $(INCS) $(CFLAGS) -o $@ -c $<
 
+curl:
+	./$(CURL_EXE) test TTS music_artist_2NE1
+
+wav:
+	./$(WAV_EXE) http://www.kozco.com/tech/piano2.wav
+
 test:
-	./$(EXE) test TTS music_artist_2NE1
+	./$(WAV_EXE) https://curl.haxx.se/libcurl/c/url2file.html
 
 clean:
-	$(RM) $(EXE) *.o
+	$(RM) $(EXE) *.o wave.raw header.bin
 
 install:
 	sudo yum install -y openssl-devel
